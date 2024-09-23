@@ -2,32 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body {
+  font-family: var(--font-montserrat);
+  @apply bg-zinc-900 text-orange-50;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  main {
+    @apply p-5;
+  }
+  h1 {
+    @apply font-bold text-4xl;
+  }
+  h2 {
+    @apply font-bold text-3xl;
+  }
+  section {
+    @apply py-10;
+  }
+  header {
+    @apply flex gap-4 mx-12 my-auto w-11/12;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .bg-orange-gradient {
+    @apply bg-gradient-to-r from-orange-500 to-yellow-500;
+  }
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-orange-gradient;
+  }
+  .link {
+    @apply hover:text-orange-500 font-bold;
+  }
+  .link-active {
+    @apply link text-gradient;
+  }
+  .btn-primary {
+    @apply bg-orange-gradient rounded-lg text-white font-bold py-2 px-4 inline-block mt-4 text-nowrap hover:opacity-90;
+  }
+  .error {
+    @apply text-center mt-12;
+  }
+  .animation-slide-right {
+    animation: fade-slide-in-from-right 1s ease-out forwards;
+  }
+
+  .animation-slide-left {
+    animation: fade-slide-in-from-left 1s ease-out forwards;
+  }
+  .animation-slide-bottom {
+    animation: fade-slide-in-from-bottom 1s ease-out forwards;
+  }
+  @keyframes fade-slide-in-from-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-slide-in-from-right {
+    0% {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-slide-in-from-bottom {
+    0% {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
